@@ -98,7 +98,7 @@ static int __init ModuleInit(void) {
 
 	/* Create device class */
 	if((my_class = class_create(THIS_MODULE, DRIVER_CLASS)) == NULL) {
-		printk("Device class can not e created!\n");
+		printk("Device class can not be created!\n");
 		goto ClassError;
 	}
 
