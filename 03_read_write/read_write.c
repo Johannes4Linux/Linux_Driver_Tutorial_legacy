@@ -28,7 +28,7 @@ static ssize_t driver_read(struct file *File, char *user_buffer, size_t count, l
 	int to_copy, not_copied, delta;
 
 	/* Get amount of data to copy */
-	to_copy = min(count, buffer_pointer);
+	to_copy = min_t(size_t, count, buffer_pointer);
 
 	/* Copy data to user */
 	not_copied = copy_to_user(user_buffer, buffer, to_copy);
@@ -86,7 +86,6 @@ static struct file_operations fops = {
  * @brief This function is called, when the module is loaded into the kernel
  */
 static int __init ModuleInit(void) {
-	int retval;
 	printk("Hello, Kernel!\n");
 
 	/* Allocate a device nr */
