@@ -87,7 +87,6 @@ static struct file_operations fops = {
  * @brief This function is called, when the module is loaded into the kernel
  */
 static int __init ModuleInit(void) {
-	int retval;
 	printk("Hello, Kernel!\n");
 
 	/* Allocate a device nr */
