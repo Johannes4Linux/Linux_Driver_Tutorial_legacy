@@ -3,6 +3,7 @@
 #include <linux/fs.h>
 #include <linux/cdev.h>
 #include <linux/uaccess.h>
+#include <linux/version.h>
 
 /* Meta Information */
 MODULE_LICENSE("GPL");
@@ -97,7 +98,13 @@ static int __init ModuleInit(void) {
 	printk("read_write - Device Nr. Major: %d, Minor: %d was registered!\n", my_device_nr >> 20, my_device_nr & 0xfffff);
 
 	/* Create device class */
-	if((my_class = class_create(THIS_MODULE, DRIVER_CLASS)) == NULL) {
+	#if LINUX_VERSION_CODE <= KERNEL_VERSION(6,4,1)
+	my_class = class_create(THIS_MODULE, DRIVER_CLASS);
+	#else
+	my_class = class_create(DRIVER_CLASS);
+	#endif
+
+	if(my_class == NULL) {
 		printk("Device class can not be created!\n");
 		goto ClassError;
 	}
