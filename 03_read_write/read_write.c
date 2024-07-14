@@ -11,7 +11,7 @@ MODULE_DESCRIPTION("Registers a device nr. and implement some callback functions
 
 /* Buffer for data */
 static char buffer[255];
-static int buffer_pointer = 0;
+static size_t buffer_pointer = 0;
 
 /* Variables for device and device class */
 static dev_t my_device_nr;
