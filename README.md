@@ -25,7 +25,7 @@ In this repo you can find examples for:
 1. Simple Kernel Module
 2. Device Numbers and Device Files
 3. Create device file in driver and callbacks
-4. GPIO Driver
+4. GPIO Driver (DEPRECATED - from kernel 6.6 configuring GPIOs must be done via the device tree)
 5. Text LCD Driver
 6. PWM Module
 7. Temperature Sensor (I2C)
