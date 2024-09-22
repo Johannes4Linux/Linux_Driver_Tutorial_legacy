@@ -28,7 +28,7 @@ static ssize_t driver_read(struct file *File, char *user_buffer, size_t count, l
 	int to_copy, not_copied, delta;
 
 	/* Get amount of data to copy */
-	to_copy = min(count, buffer_pointer);
+	to_copy = umin(count, buffer_pointer);
 
 	/* Copy data to user */
 	not_copied = copy_to_user(user_buffer, buffer, to_copy);
@@ -46,7 +46,7 @@ static ssize_t driver_write(struct file *File, const char *user_buffer, size_t c
 	int to_copy, not_copied, delta;
 
 	/* Get amount of data to copy */
-	to_copy = min(count, sizeof(buffer));
+	to_copy = umin(count, sizeof(buffer));
 
 	/* Copy data to user */
 	not_copied = copy_from_user(buffer, user_buffer, to_copy);
@@ -97,7 +97,7 @@ static int __init ModuleInit(void) {
 	printk("read_write - Device Nr. Major: %d, Minor: %d was registered!\n", my_device_nr >> 20, my_device_nr & 0xfffff);
 
 	/* Create device class */
-	if((my_class = class_create(THIS_MODULE, DRIVER_CLASS)) == NULL) {
+	if((my_class = class_create(DRIVER_CLASS)) == NULL) {
 		printk("Device class can not be created!\n");
 		goto ClassError;
 	}
